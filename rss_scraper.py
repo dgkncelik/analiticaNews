@@ -13,12 +13,23 @@ rss_feed_list = [
 
 def create_table(db_connection_object):
     db_connection_object.execute('''CREATE TABLE HABERLER
-             (ID INT PRIMARY KEY    NOT NULL,
+             (ID             INTEGER PRIMARY KEY AUTOINCREMENT,
              TITLE           TEXT    NOT NULL,
              DATE            TEXT    NOT NULL,
              LINK            TEXT    NOT NULL,
              SUMMARY         TEXT,
              AUTHOR          TEXT);''')
+
+
+def insert_row(db_connection_object, nd):
+    insert_string = ("INSERT INTO HABERLER (TITLE,DATE,LINK,SUMMARY,AUTHOR) VALUES ('%s', '%s', '%s', '%s', '%s')" %
+                     (nd["title"].replace("'", " "),
+                      nd["date"],
+                      nd["summary"].replace("'", " "),
+                      nd["link"],
+                      nd["author"]))
+    db_connection_object.execute(insert_string)
+    db_connection_object.commit()
 
 
 def rss_loop(rss_url_list):
@@ -30,7 +41,9 @@ def rss_loop(rss_url_list):
             content_short = response.content[:200]
             print("[+] Content %s" % content_short)
             parsed_content = parse_rss_content(response.content)
-            write_file_to_csv(parsed_content)
+            for pc in parsed_content:
+                insert_row(sql_connection, pc)
+            #write_file_to_csv(parsed_content)
             print(parsed_content)
             print("[+] Scraping Completed")
         else:
