@@ -55,7 +55,7 @@ def parse_rss_content(rss_content_input):
     return all_news
 
 def write_file_to_csv(news_item_object):
-    myFile = open("haberler.csv", "a")
+    myFile = open("haberler.txt", "a")
     for nio in news_item_object:
         myFile.write("%s \n" % nio)
 
