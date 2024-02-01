@@ -1,6 +1,7 @@
 import requests
 import xml.etree.ElementTree as ET
 import sqlite3
+import datetime
 
 sql_connection = sqlite3.connect("scrape_database.db")
 
@@ -71,7 +72,12 @@ def parse_rss_content(rss_content_input):
             news_object["title"] = item.find('./title').text
 
         if item.find('./pubDate') is not None:
-            news_object["date"] = item.find('./pubDate').text
+            date_string = item.find('./pubDate').text
+            if "GMT" in date_string:
+                date_string = date_string.replace("GMT", "+0000")
+            datetime_object = datetime.datetime.strptime(date_string, '%a, %d %b %Y %H:%M:%S %z')
+            iso8601_str = datetime_object.isoformat()
+            news_object["date"] = iso8601_str
 
         if item.find('./description') is not None:
             news_object["summary"] = item.find('./description').text
