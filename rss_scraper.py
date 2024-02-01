@@ -25,8 +25,8 @@ def insert_row(db_connection_object, nd):
     insert_string = ("INSERT INTO HABERLER (TITLE,DATE,LINK,SUMMARY,AUTHOR) VALUES ('%s', '%s', '%s', '%s', '%s')" %
                      (nd["title"].replace("'", " "),
                       nd["date"],
-                      nd["summary"].replace("'", " "),
                       nd["link"],
+                      nd["summary"].replace("'", " "),
                       nd["author"]))
     db_connection_object.execute(insert_string)
     db_connection_object.commit()
