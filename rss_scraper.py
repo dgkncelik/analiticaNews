@@ -30,6 +30,7 @@ def insert_row(db_connection_object, nd):
                       nd["author"]))
     db_connection_object.execute(insert_string)
     db_connection_object.commit()
+    print("[+] Saved to database")
 
 
 def rss_loop(rss_url_list):
