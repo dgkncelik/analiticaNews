@@ -1,11 +1,24 @@
 import requests
 import xml.etree.ElementTree as ET
+import sqlite3
+
+sql_connection = sqlite3.connect("scrape_database.db")
 
 rss_feed_list = [
     "https://www.trthaber.com/manset_articles.rss",
     "https://www.trthaber.com/sondakika_articles.rss",
     "https://www.haberturk.com/rss/spor.xml"
 ]
+
+
+def create_table(db_connection_object):
+    db_connection_object.execute('''CREATE TABLE HABERLER
+             (ID INT PRIMARY KEY    NOT NULL,
+             TITLE           TEXT    NOT NULL,
+             DATE            TEXT    NOT NULL,
+             LINK            TEXT    NOT NULL,
+             SUMMARY         TEXT,
+             AUTHOR          TEXT);''')
 
 
 def rss_loop(rss_url_list):
@@ -33,7 +46,13 @@ def parse_rss_content(rss_content_input):
 
     # iterate news items
     for item in parsed_rss_content.findall('./channel/item'):
-        news_object = {}
+        news_object = {
+            "title": "",
+            "date": "",
+            "summary": "",
+            "link": "",
+            "author": ""
+        }
         if item.find("./title") is not None:
             news_object["title"] = item.find('./title').text
 
@@ -54,11 +73,19 @@ def parse_rss_content(rss_content_input):
 
     return all_news
 
+
 def write_file_to_csv(news_item_object):
     myFile = open("haberler.txt", "a")
     for nio in news_item_object:
         myFile.write("%s \n" % nio)
 
+
 # Start here!
 if __name__ == '__main__':
+    try:
+        create_table(sql_connection)
+    except sqlite3.OperationalError as e:
+        if "already exists" in str(e):
+            print("Table already exists, skipping creation")
+
     rss_loop(rss_feed_list)
