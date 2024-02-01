@@ -2,8 +2,12 @@ import requests
 import xml.etree.ElementTree as ET
 import sqlite3
 import datetime
+import elasticsearch
 
 sql_connection = sqlite3.connect("scrape_database.db")
+elastic_client = elasticsearch.Elasticsearch(
+    "http://54.85.90.67:9200",  # Elasticsearch endpoint
+)
 
 rss_feed_list = [
     "https://www.trthaber.com/manset_articles.rss",
@@ -20,6 +24,17 @@ def create_table(db_connection_object):
              LINK            TEXT    NOT NULL,
              SUMMARY         TEXT,
              AUTHOR          TEXT);''')
+
+
+def create_index(es_client_object):
+    es_client_object.indices.create(index="haberler")
+
+
+def insert_document(es_client_object, nd):
+    es_client_object.index(
+        index="haberler",
+        document=nd
+    )
 
 
 def insert_row(db_connection_object, nd):
@@ -45,7 +60,8 @@ def rss_loop(rss_url_list):
             parsed_content = parse_rss_content(response.content)
             for pc in parsed_content:
                 insert_row(sql_connection, pc)
-            #write_file_to_csv(parsed_content)
+                insert_document(elastic_client, pc)
+            # write_file_to_csv(parsed_content)
             print(parsed_content)
             print("[+] Scraping Completed")
         else:
@@ -107,5 +123,11 @@ if __name__ == '__main__':
     except sqlite3.OperationalError as e:
         if "already exists" in str(e):
             print("Table already exists, skipping creation")
+
+    try:
+        create_index(elastic_client)
+    except elasticsearch.exceptions.BadRequestError as e2:
+        if "already exists" in str(e2):
+            print("Index already exists, skipping creation")
 
     rss_loop(rss_feed_list)
