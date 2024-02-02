@@ -107,3 +107,5 @@ if __name__ == '__main__':
 
     rss_links = get_links_from_file()
     rss_loop(rss_links)
+
+"""merge deneme"""
