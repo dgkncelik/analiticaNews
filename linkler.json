@@ -2,6 +2,9 @@
   "linkler": [
     "https://www.trthaber.com/manset_articles.rss",
     "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
+    "https://www.haberturk.com/rss/spor.xml",
+    "https://www.france24.com/en/europe/rss",
+    "https://www.ntv.com.tr/ekonomi.rss",
+    "http://rss.cnn.com/rss/money_news_economy.rss"
   ]
 }
