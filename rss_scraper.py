@@ -3,17 +3,24 @@ import xml.etree.ElementTree as ET
 import sqlite3
 import datetime
 import elasticsearch
+import json
 
-sql_connection = sqlite3.connect("scrape_database.db")
+LINK_FILE_NAME = "linkler.json"
+DATABASE_NAME = "scrape_database.db"
+ELASTIC_URL = "http://54.85.90.67:9200"
+
+sql_connection = sqlite3.connect(DATABASE_NAME)
 elastic_client = elasticsearch.Elasticsearch(
-    "http://54.85.90.67:9200",  # Elasticsearch endpoint
+    ELASTIC_URL,  # Elasticsearch endpoint
 )
 
-rss_feed_list = [
-    "https://www.trthaber.com/manset_articles.rss",
-    "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
-]
+
+def get_links_from_file():
+    file_object = open(LINK_FILE_NAME, "r")
+    file_content = file_object.read()
+    link_object = json.loads(file_content)
+    links = link_object["linkler"]
+    return links
 
 
 def create_table(db_connection_object):
@@ -130,4 +137,5 @@ if __name__ == '__main__':
         if "already exists" in str(e2):
             print("Index already exists, skipping creation")
 
-    rss_loop(rss_feed_list)
+    rss_links = get_links_from_file()
+    rss_loop(rss_links)
