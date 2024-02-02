@@ -6,8 +6,9 @@ import elasticsearch
 import json
 import sql_functions
 import elastic_functions
+import glob
 
-LINK_FILE_NAME = "linkler.json"
+LINK_FILE_SUFFIX = "*.json"
 DATABASE_NAME = "scrape_database.db"
 ELASTIC_URL = "http://54.85.90.67:9200"
 
@@ -18,11 +19,15 @@ elastic_client = elasticsearch.Elasticsearch(
 
 
 def get_links_from_file():
-    file_object = open(LINK_FILE_NAME, "r")
-    file_content = file_object.read()
-    link_object = json.loads(file_content)
-    links = link_object["linkler"]
-    return links
+    all_links = []
+    file_names = glob.glob(LINK_FILE_SUFFIX)
+    for fileName in file_names:
+        file_object = open(fileName, "r")
+        file_content = file_object.read()
+        link_object = json.loads(file_content)
+        all_links.append(link_object["linkler"])
+        file_object.close()
+    return all_links
 
 
 def rss_loop(rss_url_list):
