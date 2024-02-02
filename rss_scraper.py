@@ -16,6 +16,7 @@ elastic_client = elasticsearch.Elasticsearch(
     ELASTIC_URL,  # Elasticsearch endpoint
 )
 
+#Deneme commit'i yapıyorum
 
 def get_links_from_file():
     file_object = open(LINK_FILE_NAME, "r")
