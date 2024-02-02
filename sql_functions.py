@@ -1,5 +1,10 @@
 def insert_row(db_connection_object, nd):
-    iso8601_date_str = nd["date"].isoformat()
+    try:
+        iso8601_date_str = nd["date"].isoformat()
+    except Exception as e:
+        print("Error on date parsing for sql, ignore inserting %s" % str(e))
+        return
+
     insert_string = ("INSERT INTO HABERLER (TITLE,DATE,LINK,SUMMARY,AUTHOR) VALUES ('%s', '%s', '%s', '%s', '%s')" %
                      (nd["title"].replace("'", " "),
                       iso8601_date_str,
@@ -19,3 +24,8 @@ def create_table(db_connection_object):
              LINK            TEXT    NOT NULL,
              SUMMARY         TEXT,
              AUTHOR          TEXT);''')
+
+
+def read_all_news(db_connection_object):
+    cursor = db_connection_object.execute('''SELECT * FROM HABERLER''')
+    return cursor

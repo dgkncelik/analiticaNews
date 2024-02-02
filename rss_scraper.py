@@ -25,7 +25,7 @@ def get_links_from_file():
         file_object = open(fileName, "r")
         file_content = file_object.read()
         link_object = json.loads(file_content)
-        all_links.append(link_object["linkler"])
+        all_links.extend(link_object["linkler"])
         file_object.close()
     return all_links
 
@@ -72,6 +72,10 @@ def parse_rss_content(rss_content_input):
             date_string = item.find('./pubDate').text
             if "GMT" in date_string:
                 date_string = date_string.replace("GMT", "+0000")
+
+            if "EST" in date_string:
+                date_string = date_string.replace("GMT", "-0500")
+
             datetime_object = datetime.datetime.strptime(date_string, '%a, %d %b %Y %H:%M:%S %z')
             news_object["date"] = datetime_object
 

@@ -3,7 +3,12 @@ def create_index(es_client_object):
 
 
 def insert_document(es_client_object, nd):
-    nd["date"] = nd["date"].isoformat()
+    try:
+        nd["date"] = nd["date"].isoformat()
+    except Exception as e:
+        print("Error on date parsing for elasticsearch, ignore inserting %s" % str(e))
+        return
+
     es_client_object.index(
         index="haberler",
         document=nd
