@@ -1,7 +1,9 @@
 {
   "linkler": [
+    "https://www.ensonhaber.com/rss/ekonomi.xml",
     "https://www.trthaber.com/manset_articles.rss",
     "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
+    "https://www.haberturk.com/rss/spor.xml",
+    "https://www.haberturk.com/rss"
   ]
 }
