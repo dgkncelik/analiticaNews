@@ -2,6 +2,21 @@
   "linkler": [
     "https://www.trthaber.com/manset_articles.rss",
     "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
+    "https://www.trthaber.com/koronavirus_articles.rss",
+    "https://www.trthaber.com/gundem_articles.rss",
+    "https://www.trthaber.com/turkiye_articles.rss",
+    "https://www.trthaber.com/dunya_articles.rss",
+    "https://www.trthaber.com/ekonomi_articles.rss",
+    "https://www.trthaber.com/spor_articles.rss",
+    "https://www.trthaber.com/yasam_articles.rss",
+    "https://www.trthaber.com/saglik_articles.rss",
+    "https://www.trthaber.com/kultur_sanat_articles.rss",
+    "https://www.trthaber.com/bilim_teknoloji_articles.rss",
+    "https://www.trthaber.com/guncel_articles.rss",
+    "https://www.trthaber.com/egitim_articles.rss",
+    "https://www.trthaber.com/infografik_articles.rss",
+    "https://www.trthaber.com/interaktif_articles.rss",
+    "https://www.trthaber.com/ozel_haber_articles.rss",
+    "https://www.trthaber.com/dosya_haber_articles.rss"
   ]
 }
