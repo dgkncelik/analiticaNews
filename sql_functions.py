@@ -10,6 +10,7 @@ def insert_row(db_connection_object, nd):
     db_connection_object.commit()
     print("[+] Saved to database")
 
+
 def create_table(db_connection_object):
     db_connection_object.execute('''CREATE TABLE HABERLER
              (ID             INTEGER PRIMARY KEY AUTOINCREMENT,
