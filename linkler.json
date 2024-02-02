@@ -1,7 +1,7 @@
 {
-  "linkler": [
-    "https://www.trthaber.com/manset_articles.rss",
+  "linkler":[
+    "https://www.ntv.com.tr/turkiye.rss",
     "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
-  ]
+    "https://www.trthaber.com/turkiye_articles.rss"
+]
 }
