@@ -1,7 +1,10 @@
 {
   "linkler": [
-    "https://www.trthaber.com/manset_articles.rss",
-    "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
+    "https://www.haberturk.com/rss/spor.xml",
+    "https://www.haberturk.com/rss/ekonomi.xml",
+    "https://www.haberturk.com/rss/kategori/tatil.xml",
+    "https://www.haberturk.com/rss/kategori/saglik.xml",
+    "https://www.haberturk.com/rss/kategori/astroloji.xml",
+    "https://www.haberturk.com/rs/kategori/astroloji.xml"
   ]
 }
