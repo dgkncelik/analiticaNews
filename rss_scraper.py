@@ -4,6 +4,8 @@ import sqlite3
 import datetime
 import elasticsearch
 import json
+import sql_functions
+import elastic_functions
 
 LINK_FILE_NAME = "linkler.json"
 DATABASE_NAME = "scrape_database.db"
@@ -23,39 +25,6 @@ def get_links_from_file():
     return links
 
 
-def create_table(db_connection_object):
-    db_connection_object.execute('''CREATE TABLE HABERLER
-             (ID             INTEGER PRIMARY KEY AUTOINCREMENT,
-             TITLE           TEXT    NOT NULL,
-             DATE            TEXT    NOT NULL,
-             LINK            TEXT    NOT NULL,
-             SUMMARY         TEXT,
-             AUTHOR          TEXT);''')
-
-
-def create_index(es_client_object):
-    es_client_object.indices.create(index="haberler")
-
-
-def insert_document(es_client_object, nd):
-    es_client_object.index(
-        index="haberler",
-        document=nd
-    )
-
-
-def insert_row(db_connection_object, nd):
-    insert_string = ("INSERT INTO HABERLER (TITLE,DATE,LINK,SUMMARY,AUTHOR) VALUES ('%s', '%s', '%s', '%s', '%s')" %
-                     (nd["title"].replace("'", " "),
-                      nd["date"],
-                      nd["link"],
-                      nd["summary"].replace("'", " "),
-                      nd["author"]))
-    db_connection_object.execute(insert_string)
-    db_connection_object.commit()
-    print("[+] Saved to database")
-
-
 def rss_loop(rss_url_list):
     i = 0
     for rss_url in rss_url_list:
@@ -66,8 +35,8 @@ def rss_loop(rss_url_list):
             print("[+] Content %s" % content_short)
             parsed_content = parse_rss_content(response.content)
             for pc in parsed_content:
-                insert_row(sql_connection, pc)
-                insert_document(elastic_client, pc)
+                sql_functions.insert_row(sql_connection, pc)
+                elastic_functions.insert_document(elastic_client, pc)
             # write_file_to_csv(parsed_content)
             print(parsed_content)
             print("[+] Scraping Completed")
@@ -99,8 +68,7 @@ def parse_rss_content(rss_content_input):
             if "GMT" in date_string:
                 date_string = date_string.replace("GMT", "+0000")
             datetime_object = datetime.datetime.strptime(date_string, '%a, %d %b %Y %H:%M:%S %z')
-            iso8601_str = datetime_object.isoformat()
-            news_object["date"] = iso8601_str
+            news_object["date"] = datetime_object
 
         if item.find('./description') is not None:
             news_object["summary"] = item.find('./description').text
@@ -126,13 +94,13 @@ def write_file_to_csv(news_item_object):
 # Start here!
 if __name__ == '__main__':
     try:
-        create_table(sql_connection)
+        sql_functions.create_table(sql_connection)
     except sqlite3.OperationalError as e:
         if "already exists" in str(e):
             print("Table already exists, skipping creation")
 
     try:
-        create_index(elastic_client)
+        elastic_functions.create_index(elastic_client)
     except elasticsearch.exceptions.BadRequestError as e2:
         if "already exists" in str(e2):
             print("Index already exists, skipping creation")
