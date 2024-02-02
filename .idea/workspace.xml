@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bec9cac0-2be9-4f31-8e54-96fa649b3cd2" name="Changes" comment="Update database&#10;Change sql, elastic functions in files">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linkler.json" beforeDir="false" afterPath="$PROJECT_DIR$/linkler.json" afterDir="false" />
-    </list>
+    <list default="true" id="bec9cac0-2be9-4f31-8e54-96fa649b3cd2" name="Changes" comment="link update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,6 +24,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SET_USER_NAME_GLOBALLY" value="false" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -48,6 +46,10 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "ALP",
     "last_opened_file_path": "/home/alphonzo/Desktop/OYK2024/analiticaNews",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
     "vue.rearranger.settings.migration": "true"
@@ -93,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706691801150</updated>
-      <workItem from="1706866260920" duration="225000" />
+      <workItem from="1706866260920" duration="926000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -175,11 +177,30 @@
       <option name="project" value="LOCAL" />
       <updated>1706861332936</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="link update">
+      <option name="closed" value="true" />
+      <created>1706866885199</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1706866885199</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial commit" />
@@ -191,7 +212,8 @@
     <MESSAGE value="Add elasticseach configuration and indexing&#10;Add elasticsearch connection functions" />
     <MESSAGE value="Add linkler.json&#10;Change link collection method&#10;Update database" />
     <MESSAGE value="Update database&#10;Change sql, elastic functions in files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update database&#10;Change sql, elastic functions in files" />
+    <MESSAGE value="link update" />
+    <option name="LAST_COMMIT_MESSAGE" value="link update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
