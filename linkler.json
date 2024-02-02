@@ -1,7 +1,8 @@
 {
   "linkler": [
-    "https://www.trthaber.com/manset_articles.rss",
-    "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
+    "https://www.ahaber.com.tr/rss/galeri/teknoloji.xml",
+    "https://www.ahaber.com.tr/rss/galeri/dunya.xml",
+    "https://www.ahaber.com.tr/rss/galeri/spor.xml",
+    "https://www.ahaber.com.tr/rss/galeri/magazin.xml"
   ]
 }
