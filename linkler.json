@@ -2,6 +2,11 @@
   "linkler": [
     "https://www.trthaber.com/manset_articles.rss",
     "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
+    "https://www.haberturk.com/rss/spor.xml",
+    "https://t24.com.tr/rss/haber/dunya-basininda-bugun",
+    "https://t24.com.tr/rss/haber/ekonomi",
+    "https://t24.com.tr/rss/haber/kultur-sanat",
+    "https://www.gazeteduvar.com.tr/rss/politika",
+    "https://www.gazeteduvar.com.tr/rss/gundem"
   ]
 }
