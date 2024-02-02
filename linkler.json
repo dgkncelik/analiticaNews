@@ -2,6 +2,11 @@
   "linkler": [
     "https://www.trthaber.com/manset_articles.rss",
     "https://www.trthaber.com/sondakika_articles.rss",
-    "https://www.haberturk.com/rss/spor.xml"
+    "https://www.haberturk.com/rss/spor.xml",
+    "https://www.haberturk.com/rss",
+    "https://ensonhaber.com/rss/ensonhaber.xml",
+    "https://www.sozcu.com.tr/feeds-rss-category-sozcu",
+    "https://feeds.bbci.co.uk/turkce/rss.xml",
+    "https://www.cumhuriyet.com.tr/rss/1.xml"
   ]
 }
